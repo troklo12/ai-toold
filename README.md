@@ -1,1 +1,1 @@
-# ai-toold
+# ai-tools
