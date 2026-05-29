@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In — AI Tools Catalog</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <style>
+    /* Auth tab styles */
+    .auth-tabs {
+      display: flex;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 4px;
+      margin-bottom: 28px;
+    }
+    .auth-tab {
+      flex: 1;
+      padding: 9px;
+      border: none;
+      border-radius: 7px;
+      background: transparent;
+      color: var(--text-2);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--t);
+    }
+    .auth-tab.active {
+      background: var(--grad-main);
+      color: #fff;
+    }
+    .password-wrapper { position: relative; }
+    .password-toggle {
+      position: absolute;
+      right: 14px; top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-3);
+      cursor: pointer;
+      font-size: .85rem;
+      transition: var(--t);
+    }
+    .password-toggle:hover { color: var(--text-1); }
+    .strength-bar {
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      margin-top: 6px;
+      overflow: hidden;
+    }
+    .strength-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width .3s ease, background .3s ease;
+      width: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ░░ BACKGROUND ORBS ░░ -->
+<div class="bg-orbs" aria-hidden="true">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<!-- ░░ HEADER ░░ -->
+<header class="header" id="header">
+  <a href="index.html" class="logo">
+    <div class="logo-icon" aria-hidden="true">⚡</div>
+    AI<span class="gradient-text">Tools</span>
+  </a>
+  <nav class="nav">
+    <a href="index.html">Catalog</a>
+    <a href="favorites.html">Favorites</a>
+  </nav>
+  <div class="header-actions">
+    <a href="index.html" class="btn btn-ghost btn-sm">← Browse Tools</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🗂️ Catalog</a>
+  <a href="favorites.html">❤️ Favorites</a>
+</div>
+
+<!-- ░░ AUTH CARD ░░ -->
+<main class="auth-page" aria-label="Authentication">
+  <div class="auth-card fade-up">
+
+    <div class="auth-logo">
+      <div class="logo-icon" aria-hidden="true">⚡</div>
+      <div class="auth-title">Welcome Back</div>
+      <p class="auth-sub">Sign in to save favorites and personalize your catalog experience</p>
+    </div>
+
+    <!-- Tab switcher -->
+    <div class="auth-tabs" role="tablist">
+      <button class="auth-tab active" data-target="loginPanel" role="tab" aria-selected="true">Sign In</button>
+      <button class="auth-tab" data-target="registerPanel" role="tab" aria-selected="false">Register</button>
+    </div>
+
+    <!-- SIGN IN PANEL -->
+    <div class="auth-panel" id="loginPanel">
+      <!-- Social logins -->
+      <button class="social-btn" type="button" onclick="Toast.show('OAuth demo — not connected', 'info')">
+        <span>G</span> Continue with Google
+      </button>
+      <button class="social-btn" type="button" onclick="Toast.show('OAuth demo — not connected', 'info')">
+        <span>⌥</span> Continue with GitHub
+      </button>
+
+      <div class="divider">or continue with email</div>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="loginEmail">Email address</label>
+          <input
+            type="email"
+            id="loginEmail"
+            class="form-input"
+            placeholder="you@example.com"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="loginPassword">Password</label>
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="loginPassword"
+              class="form-input"
+              placeholder="••••••••"
+              required
+              autocomplete="current-password"
+            />
+            <button type="button" class="password-toggle" id="loginToggle" aria-label="Toggle password visibility">👁</button>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label class="form-check">
+            <input type="checkbox" /> Remember me
+          </label>
+          <a href="#" class="form-link">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+          Sign In →
+        </button>
+      </form>
+    </div>
+
+    <!-- REGISTER PANEL -->
+    <div class="auth-panel" id="registerPanel" style="display:none">
+      <button class="social-btn" type="button" onclick="Toast.show('OAuth demo — not connected', 'info')">
+        <span>G</span> Sign up with Google
+      </button>
+
+      <div class="divider">or create account</div>
+
+      <form id="registerForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="regName">Full name</label>
+          <input
+            type="text"
+            id="regName"
+            class="form-input"
+            placeholder="Jane Doe"
+            required
+            autocomplete="name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="regEmail">Email address</label>
+          <input
+            type="email"
+            id="regEmail"
+            class="form-input"
+            placeholder="you@example.com"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="regPassword">Password</label>
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="regPassword"
+              class="form-input"
+              placeholder="Create a strong password"
+              required
+              id="regPassword"
+              autocomplete="new-password"
+            />
+            <button type="button" class="password-toggle" id="regToggle" aria-label="Toggle password visibility">👁</button>
+          </div>
+          <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-check">
+            <input type="checkbox" required /> I agree to the <a href="#" class="form-link">Terms</a> &amp; <a href="#" class="form-link">Privacy Policy</a>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+          Create Account →
+        </button>
+      </form>
+    </div>
+
+    <p class="auth-footer">
+      Don't have an account? <a href="#" id="switchToRegister">Create one free →</a>
+    </p>
+  </div>
+</main>
+
+<script src="js/app.js"></script>
+<script>
+  // Password toggle visibility
+  function initPasswordToggle(inputId, toggleId) {
+    const input = document.getElementById(inputId);
+    const btn   = document.getElementById(toggleId);
+    if (!input || !btn) return;
+    btn.addEventListener('click', () => {
+      input.type = input.type === 'password' ? 'text' : 'password';
+      btn.textContent = input.type === 'password' ? '👁' : '🙈';
+    });
+  }
+  initPasswordToggle('loginPassword', 'loginToggle');
+  initPasswordToggle('regPassword', 'regToggle');
+
+  // Password strength indicator
+  document.getElementById('regPassword')?.addEventListener('input', e => {
+    const val = e.target.value;
+    const fill = document.getElementById('strengthFill');
+    if (!fill) return;
+    let score = 0;
+    if (val.length >= 8)   score++;
+    if (/[A-Z]/.test(val)) score++;
+    if (/[0-9]/.test(val)) score++;
+    if (/[^A-Za-z0-9]/.test(val)) score++;
+    const colors = ['#e040fb','#ff9800','#fbbf24','#00dcc8'];
+    fill.style.width   = `${score * 25}%`;
+    fill.style.background = colors[score - 1] || 'transparent';
+  });
+
+  // Quick switch link
+  document.getElementById('switchToRegister')?.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector('.auth-tab[data-target="registerPanel"]')?.click();
+  });
+</script>
+</body>
+</html>

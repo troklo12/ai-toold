@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tool Details — AI Tools Catalog</title>
+  <meta name="description" content="Detailed view of an AI tool — features, pros, cons, pricing, and reviews." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <style>
+    /* Tool page extra styles */
+    .tool-badge-row {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .tool-title-group { margin-bottom: 20px; }
+    .tool-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 10px; }
+    .tool-rating-big {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--gold); font-size: 1rem; font-weight: 600;
+    }
+    .tool-desc-text { color: var(--text-2); line-height: 1.75; font-size: 1rem; margin-bottom: 28px; }
+    .section-divider { height: 1px; background: var(--border); margin: 40px 0; }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 16px;
+    }
+    .feature-pill {
+      padding: 10px 14px;
+      background: rgba(0,220,200,.06);
+      border: 1px solid rgba(0,220,200,.15);
+      border-radius: var(--r-sm);
+      font-size: .87rem;
+      color: var(--text-1);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .feature-pill::before { content: '⚡'; font-size: .8rem; }
+    .info-card-section { margin-bottom: 20px; }
+    .info-card-label { font-size: .75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-3); margin-bottom: 10px; }
+    @media(max-width:768px){ .features-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+<!-- ░░ BACKGROUND ORBS ░░ -->
+<div class="bg-orbs" aria-hidden="true">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<!-- ░░ HEADER ░░ -->
+<header class="header" id="header">
+  <a href="index.html" class="logo">
+    <div class="logo-icon" aria-hidden="true">⚡</div>
+    AI<span class="gradient-text">Tools</span>
+  </a>
+  <nav class="nav">
+    <a href="index.html">Catalog</a>
+    <a href="favorites.html">Favorites</a>
+    <a href="admin.html">Admin</a>
+  </nav>
+  <div class="header-actions">
+    <a href="favorites.html" class="btn btn-ghost btn-sm">❤️ Favorites</a>
+    <a href="login.html" class="btn btn-primary btn-sm">Sign In</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🗂️ Catalog</a>
+  <a href="favorites.html">❤️ Favorites</a>
+  <a href="admin.html">⚙️ Admin</a>
+  <div class="mobile-menu-actions">
+    <a href="login.html" class="btn btn-primary btn-sm" style="flex:1;justify-content:center">Sign In</a>
+  </div>
+</div>
+
+<!-- ░░ TOOL HERO ░░ -->
+<div class="tool-hero" id="toolContent">
+
+  <button class="back-btn" id="backBtn" aria-label="Go back">
+    ← Back to Catalog
+  </button>
+
+  <div class="tool-hero-grid">
+
+    <!-- Left: info -->
+    <div class="tool-hero-left">
+
+      <!-- Image / Emoji -->
+      <div class="tool-hero-image">
+        <div class="card-image-placeholder tool-hero-image-placeholder" id="toolImagePlaceholder">
+          <span id="toolEmoji">🤖</span>
+        </div>
+      </div>
+
+      <!-- Title & meta -->
+      <div class="tool-title-group" style="margin-top:28px">
+        <div class="tool-badge-row">
+          <span id="toolCat" class="card-cat"></span>
+          <span id="toolBadge" class="card-badge"></span>
+        </div>
+        <h1 class="tool-title" id="toolName">Loading…</h1>
+        <div class="tool-rating-big" id="toolRating"></div>
+      </div>
+
+      <!-- Full description -->
+      <p class="tool-desc-text" id="toolDesc"></p>
+
+      <!-- Features grid -->
+      <div>
+        <div class="section-label">Key Features</div>
+        <div class="features-grid" id="toolFeaturesGrid">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Pros & Cons -->
+      <div class="section-label">Pros &amp; Cons</div>
+      <div class="pros-cons">
+        <div class="pros-box">
+          <div class="pros-title">✅ Pros</div>
+          <ul id="toolPros"></ul>
+        </div>
+        <div class="cons-box">
+          <div class="cons-title">❌ Cons</div>
+          <ul id="toolCons"></ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Reviews -->
+      <div class="section-label">User Reviews</div>
+      <div class="reviews-grid" id="toolReviews"></div>
+
+    </div>
+
+    <!-- Right: sticky info card -->
+    <div class="tool-info-card">
+
+      <!-- Price -->
+      <div class="tool-price-block glass">
+        <div class="tool-price-label">Pricing</div>
+        <div class="tool-price-value gradient-text" id="toolPrice">—</div>
+      </div>
+
+      <!-- CTA buttons -->
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+        <a href="#" id="toolWebsite" class="btn btn-primary" target="_blank" rel="noopener">
+          Visit Website →
+        </a>
+        <button class="btn btn-ghost" id="favBtn">❤️ Save to Favorites</button>
+      </div>
+
+      <!-- Features list -->
+      <div class="glass" style="padding:20px">
+        <div class="info-card-label">Features at a glance</div>
+        <ul class="features-list" id="toolFeatures"></ul>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- ░░ FOOTER ░░ -->
+<footer class="footer">
+  <div class="footer-bottom" style="max-width:1100px">
+    <a href="index.html" style="color:var(--text-2);text-decoration:none">← Back to AI Tools Catalog</a>
+    <span style="color:var(--text-3)">© 2025 AI Tools Catalog</span>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+  // Wire up features grid after DOM load (toolPage populates toolFeatures list)
+  document.addEventListener('DOMContentLoaded', () => {
+    // After ToolPage.init() runs, convert list items to pill grid
+    setTimeout(() => {
+      const list = document.getElementById('toolFeatures');
+      const grid = document.getElementById('toolFeaturesGrid');
+      if (!list || !grid) return;
+      Array.from(list.querySelectorAll('li')).forEach(li => {
+        const pill = document.createElement('div');
+        pill.className = 'feature-pill';
+        pill.textContent = li.textContent;
+        grid.appendChild(pill);
+      });
+    }, 100);
+  });
+</script>
+</body>
+</html>

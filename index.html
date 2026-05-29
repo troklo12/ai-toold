@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Tools Catalog — Discover the Best AI Tools</title>
+  <meta name="description" content="Curated catalog of the best AI tools for students and freelancers. Filter by category, price, and rating." />
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Favicon placeholder -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+</head>
+<body>
+
+<!-- ░░ BACKGROUND ORBS ░░ -->
+<div class="bg-orbs" aria-hidden="true">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<!-- ░░ HEADER ░░ -->
+<header class="header" id="header">
+  <a href="index.html" class="logo">
+    <div class="logo-icon" aria-hidden="true">⚡</div>
+    AI<span class="gradient-text">Tools</span>
+  </a>
+
+  <nav class="nav" aria-label="Main navigation">
+    <a href="index.html" class="active">Catalog</a>
+    <a href="favorites.html">Favorites</a>
+    <a href="admin.html">Admin</a>
+  </nav>
+
+  <div class="header-actions">
+    <a href="favorites.html" class="btn btn-ghost btn-sm">❤️ Favorites</a>
+    <a href="login.html" class="btn btn-primary btn-sm">Sign In</a>
+  </div>
+
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- ░░ MOBILE MENU ░░ -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <a href="index.html">🗂️ Catalog</a>
+  <a href="favorites.html">❤️ Favorites</a>
+  <a href="admin.html">⚙️ Admin</a>
+  <div class="mobile-menu-actions">
+    <a href="login.html" class="btn btn-primary btn-sm" style="flex:1;justify-content:center">Sign In</a>
+  </div>
+</div>
+
+<!-- ░░ HERO SECTION ░░ -->
+<section class="hero" aria-labelledby="heroTitle">
+  <div class="hero-badge">
+    <span class="dot" aria-hidden="true"></span>
+    12 curated AI tools &amp; counting
+  </div>
+
+  <h1 id="heroTitle">
+    Discover AI Tools<br />
+    <span class="gradient-text">That Actually Work</span>
+  </h1>
+
+  <p class="hero-sub">
+    The ultimate catalog for students &amp; freelancers. Find, compare, and bookmark
+    the best AI tools across every category — all in one place.
+  </p>
+
+  <!-- Hero Search -->
+  <div class="hero-search" role="search">
+    <span class="search-icon" aria-hidden="true">🔍</span>
+    <input
+      type="search"
+      id="heroSearch"
+      placeholder="Search ChatGPT, Midjourney, Copilot…"
+      aria-label="Search AI tools"
+      autocomplete="off"
+    />
+    <button class="btn btn-primary btn-sm search-btn" aria-label="Search">Search</button>
+  </div>
+
+  <!-- Hero Stats -->
+  <div class="hero-stats" aria-label="Catalog statistics">
+    <div class="stat">
+      <div class="stat-num gradient-text">12+</div>
+      <div class="stat-label">AI Tools</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num gradient-text">8</div>
+      <div class="stat-label">Categories</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num gradient-text">100K+</div>
+      <div class="stat-label">Reviews</div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ FILTERS BAR ░░ -->
+<div class="filters-bar" id="filtersBar" role="navigation" aria-label="Filter tools">
+  <div class="filters-inner">
+
+    <!-- Category Filters -->
+    <button class="cat-btn active" data-cat="All">
+      <span class="cat-icon" aria-hidden="true">⚡</span> All
+    </button>
+    <button class="cat-btn" data-cat="Text">
+      <span class="cat-icon" aria-hidden="true">💬</span> Text
+    </button>
+    <button class="cat-btn" data-cat="Design">
+      <span class="cat-icon" aria-hidden="true">🖼️</span> Design
+    </button>
+    <button class="cat-btn" data-cat="Productivity">
+      <span class="cat-icon" aria-hidden="true">📝</span> Productivity
+    </button>
+    <button class="cat-btn" data-cat="Research">
+      <span class="cat-icon" aria-hidden="true">🔍</span> Research
+    </button>
+    <button class="cat-btn" data-cat="Marketing">
+      <span class="cat-icon" aria-hidden="true">📣</span> Marketing
+    </button>
+    <button class="cat-btn" data-cat="Coding">
+      <span class="cat-icon" aria-hidden="true">👨‍💻</span> Coding
+    </button>
+    <button class="cat-btn" data-cat="Video">
+      <span class="cat-icon" aria-hidden="true">🎬</span> Video
+    </button>
+    <button class="cat-btn" data-cat="Image Generation">
+      <span class="cat-icon" aria-hidden="true">🎨</span> Images
+    </button>
+
+    <!-- Price Toggle -->
+    <div class="price-toggle" role="group" aria-label="Filter by price">
+      <button class="price-btn active" data-price="All">All</button>
+      <button class="price-btn" data-price="Free">Free</button>
+      <button class="price-btn" data-price="Paid">Paid</button>
+      <button class="price-btn" data-price="Freemium">Freemium</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ░░ TOOLS GRID ░░ -->
+<main class="section" id="catalog" aria-label="AI Tools catalog">
+  <div class="section-header">
+    <div class="section-label">Browse All Tools</div>
+    <h2 class="section-title">Find Your Perfect <span class="gradient-text">AI Stack</span></h2>
+    <p class="section-sub">Hover over cards, click to explore details, and save your favorites.</p>
+  </div>
+
+  <div class="tools-grid" id="toolsGrid" role="list" aria-live="polite" aria-label="AI tools list">
+    <!-- Dynamically rendered by app.js -->
+  </div>
+</main>
+
+<!-- ░░ FOOTER ░░ -->
+<footer class="footer" aria-label="Site footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo" style="font-size:1.1rem">
+        <div class="logo-icon" style="width:28px;height:28px;font-size:.8rem" aria-hidden="true">⚡</div>
+        AI<span class="gradient-text">Tools</span>
+      </a>
+      <p>The curated AI tools catalog for students and freelancers who want to work smarter.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Catalog</h4>
+      <a href="index.html">All Tools</a>
+      <a href="index.html" onclick="State.setCategory('Text');return false;">Text AI</a>
+      <a href="index.html" onclick="State.setCategory('Coding');return false;">Coding AI</a>
+      <a href="index.html" onclick="State.setCategory('Image Generation');return false;">Image AI</a>
+    </div>
+    <div class="footer-col">
+      <h4>Account</h4>
+      <a href="login.html">Sign In</a>
+      <a href="login.html">Register</a>
+      <a href="favorites.html">Favorites</a>
+      <a href="admin.html">Admin</a>
+    </div>
+    <div class="footer-col">
+      <h4>About</h4>
+      <a href="#">About Us</a>
+      <a href="#">Submit a Tool</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">GitHub</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 AI Tools Catalog. Open source &amp; free to use.</span>
+    <div class="footer-socials">
+      <a href="#" aria-label="Twitter">𝕏</a>
+      <a href="#" aria-label="GitHub">⌥</a>
+      <a href="#" aria-label="Discord">◈</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>

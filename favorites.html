@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Favorites — AI Tools Catalog</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <style>
+    .fav-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 8px;
+      background: var(--grad-main);
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 700;
+      color: #fff;
+      margin-left: 10px;
+    }
+    .clear-btn {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ░░ BACKGROUND ORBS ░░ -->
+<div class="bg-orbs" aria-hidden="true">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<!-- ░░ HEADER ░░ -->
+<header class="header" id="header">
+  <a href="index.html" class="logo">
+    <div class="logo-icon" aria-hidden="true">⚡</div>
+    AI<span class="gradient-text">Tools</span>
+  </a>
+  <nav class="nav">
+    <a href="index.html">Catalog</a>
+    <a href="favorites.html" class="active">Favorites</a>
+    <a href="admin.html">Admin</a>
+  </nav>
+  <div class="header-actions">
+    <a href="login.html" class="btn btn-primary btn-sm">Sign In</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🗂️ Catalog</a>
+  <a href="favorites.html">❤️ Favorites</a>
+  <a href="admin.html">⚙️ Admin</a>
+  <div class="mobile-menu-actions">
+    <a href="login.html" class="btn btn-primary btn-sm" style="flex:1;justify-content:center">Sign In</a>
+  </div>
+</div>
+
+<!-- ░░ PAGE HEADER ░░ -->
+<div class="page-header">
+  <div class="section-label">My Collection</div>
+  <h1 class="section-title" style="font-size:clamp(1.8rem,4vw,3rem)">
+    ❤️ Saved <span class="gradient-text">Favorites</span>
+    <span class="fav-count" id="favCount">0</span>
+  </h1>
+  <p class="section-sub" style="margin-top:12px">
+    Your personally curated AI toolkit. Saved across sessions in your browser.
+  </p>
+  <button
+    class="btn btn-ghost btn-sm clear-btn"
+    style="margin-top:20px"
+    id="clearAllBtn"
+  >
+    🗑️ Clear All
+  </button>
+</div>
+
+<!-- ░░ EMPTY STATE ░░ -->
+<div class="empty-state" id="emptyState" style="display:none">
+  <span class="empty-icon">💔</span>
+  <h2>No favorites yet</h2>
+  <p>Browse the catalog and click the heart button to save tools you love.</p>
+  <a href="index.html" class="btn btn-primary">Browse AI Tools →</a>
+</div>
+
+<!-- ░░ FAVORITES GRID ░░ -->
+<div class="section" style="padding-top:0">
+  <div class="tools-grid" id="favGrid" aria-live="polite" aria-label="Favorited AI tools"></div>
+</div>
+
+<!-- ░░ FOOTER ░░ -->
+<footer class="footer">
+  <div class="footer-bottom">
+    <a href="index.html" style="color:var(--text-2);text-decoration:none">← Back to Catalog</a>
+    <span style="color:var(--text-3)">© 2025 AI Tools Catalog</span>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+  // Update count badge
+  function updateCount() {
+    const count = State.favorites.length;
+    const el = document.getElementById('favCount');
+    if (el) el.textContent = count;
+  }
+
+  // Clear all
+  document.getElementById('clearAllBtn')?.addEventListener('click', () => {
+    if (!State.favorites.length) {
+      Toast.show('Nothing to clear', 'info');
+      return;
+    }
+    State.favorites = [];
+    localStorage.setItem('aic_favorites', '[]');
+    Toast.show('All favorites cleared', 'info');
+    FavoritesPage.render();
+    updateCount();
+  });
+
+  // Re-render & update count after any toggle
+  const origToggle = State.toggleFavorite.bind(State);
+  State.toggleFavorite = function(id) {
+    origToggle(id);
+    setTimeout(() => {
+      FavoritesPage.render();
+      updateCount();
+    }, 50);
+  };
+
+  document.addEventListener('DOMContentLoaded', updateCount);
+</script>
+</body>
+</html>
